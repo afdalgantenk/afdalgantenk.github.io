@@ -15,6 +15,7 @@
       --card: #ffffff;
       --primary: #2563eb;
       --border: #e5e7eb;
+      --glow: rgba(37,99,235,0.25);
     }
 
     body.dark {
@@ -24,6 +25,7 @@
       --card: #0f172a;
       --primary: #60a5fa;
       --border: #1e293b;
+      --glow: rgba(96,165,250,0.35);
     }
 
     * {
@@ -38,20 +40,21 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      transition: background .4s, color .4s;
     }
 
-    /* ===== NAVBAR ===== */
+    /* ===== NAV ===== */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.75);
       border-bottom: 1px solid var(--border);
     }
 
     body.dark nav {
-      background: rgba(2,6,23,0.8);
+      background: rgba(2,6,23,.75);
     }
 
     .nav-container {
@@ -64,26 +67,37 @@
     }
 
     nav a {
-      margin-left: 24px;
+      margin-left: 22px;
       text-decoration: none;
-      color: var(--text);
-      font-weight: 500;
+      color: var(--muted);
       font-size: 14px;
+      position: relative;
     }
 
+    nav a.active,
     nav a:hover {
       color: var(--primary);
     }
 
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
     .toggle {
-      margin-left: 24px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
+      margin-left: 22px;
       padding: 6px 14px;
       border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
       cursor: pointer;
-      font-size: 13px;
+      color: var(--text);
     }
 
     /* ===== HERO ===== */
@@ -97,8 +111,25 @@
       align-items: center;
     }
 
+    .hero {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(37,99,235,.1);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
     .hero h1 {
-      font-size: 52px;
+      font-size: 54px;
       line-height: 1.1;
       margin-bottom: 20px;
     }
@@ -109,22 +140,16 @@
       max-width: 520px;
     }
 
-    .badge {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(37,99,235,0.1);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
     .hero-card {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 30px;
-      border-radius: 16px;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+      animation-delay: .3s;
     }
 
     /* ===== SECTION ===== */
@@ -143,7 +168,21 @@
       background: var(--card);
       border: 1px solid var(--border);
       padding: 32px;
-      border-radius: 16px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      transition: transform .3s, box-shadow .3s;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 60px var(--glow);
     }
 
     /* ===== SKILLS ===== */
@@ -154,10 +193,17 @@
     }
 
     .skills span {
-      border: 1px solid var(--border);
       padding: 8px 18px;
       border-radius: 999px;
+      border: 1px solid var(--border);
       font-size: 14px;
+      transition: all .25s;
+    }
+
+    .skills span:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: scale(1.05);
     }
 
     /* ===== PROJECTS ===== */
@@ -167,22 +213,20 @@
       gap: 24px;
     }
 
-    .project h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-
-    .project p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
     /* ===== FOOTER ===== */
     footer {
-      padding: 50px 24px;
+      padding: 60px 24px;
       text-align: center;
       border-top: 1px solid var(--border);
       color: var(--muted);
+    }
+
+    /* ===== ANIM ===== */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ===== RESPONSIVE ===== */
@@ -216,10 +260,10 @@
 <header>
   <div class="hero">
     <span class="badge">Web Developer</span>
-    <h1>Building clean,<br>reliable web systems.</h1>
+    <h1>Building calm,<br>reliable systems.</h1>
     <p>
-      Saya fokus membangun sistem informasi berbasis web,
-      dashboard internal, dan aplikasi yang stabil untuk kebutuhan nyata.
+      Fokus pada sistem informasi, dashboard internal,
+      dan aplikasi web yang stabil serta mudah dirawat.
     </p>
   </div>
 
@@ -233,48 +277,43 @@
 
 <section id="about">
   <h2>Tentang Saya</h2>
-  <div class="card">
-    Saya adalah web developer dengan fokus pada pengembangan
-    sistem internal, otomasi, dan aplikasi berbasis database
-    yang mengutamakan kestabilan dan kejelasan alur.
+  <div class="card reveal">
+    Web developer yang fokus pada sistem internal,
+    otomasi, dan aplikasi berbasis database
+    dengan pendekatan rapi dan terstruktur.
   </div>
 </section>
 
 <section id="skills">
   <h2>Keahlian</h2>
-  <div class="card skills">
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>PHP</span>
-    <span>MySQL</span>
-    <span>Git & GitHub</span>
+  <div class="card skills reveal">
+    <span>HTML</span><span>CSS</span><span>JavaScript</span>
+    <span>PHP</span><span>MySQL</span><span>Git & GitHub</span>
   </div>
 </section>
 
 <section id="projects">
   <h2>Proyek</h2>
   <div class="projects">
-    <div class="card project">
+    <div class="card reveal">
       <h3>Portal Aplikasi Pondok</h3>
-      <p>Sistem terintegrasi untuk layanan internal pondok pesantren.</p>
+      <p>Sistem layanan internal terintegrasi.</p>
     </div>
-    <div class="card project">
+    <div class="card reveal">
       <h3>Aplikasi Tasreh</h3>
-      <p>Sistem perizinan santri dengan filter tanggal dan PDF.</p>
+      <p>Sistem perizinan dengan filter & PDF.</p>
     </div>
-    <div class="card project">
-      <h3>Mapping UID</h3>
-      <p>Manajemen UID dengan import CSV, pencarian, dan notifikasi.</p>
+    <div class="card reveal">
+      <h3>Alikasi Verifikasi Muhrim</h3>
+      <p>Sistem Verifikasi Muhrim untuk Pondok Pesantren.</p>
     </div>
   </div>
 </section>
 
 <section id="contact">
   <h2>Kontak</h2>
-  <div class="card">
-    Email: <a href="mailto:emailkamu@gmail.com">emailkamu@gmail.com</a><br>
-    GitHub: <a href="https://github.com/afdalgantenk" target="_blank">github.com/afdalgantenk</a>
+  <div class="card reveal">
+    Email: <a href="mailto:officialmafdal@gmail.com">officialmafdal@gmail.com</a><br>
   </div>
 </section>
 
@@ -283,9 +322,37 @@
 </footer>
 
 <script>
+  // dark mode
   function toggleDark() {
     document.body.classList.toggle('dark');
   }
+
+  // reveal on scroll
+  const reveals = document.querySelectorAll('.reveal, .card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('show');
+    });
+  }, { threshold: 0.15 });
+
+  reveals.forEach(r => observer.observe(r));
+
+  // active nav
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(sec => {
+      if (pageYOffset >= sec.offsetTop - 120) {
+        current = sec.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach(a => {
+      a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+    });
+  });
 </script>
 
 </body>

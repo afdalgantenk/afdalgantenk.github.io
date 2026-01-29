@@ -8,6 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    nav.scrolled {
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
     :root {
       --bg: #f8fafc;
       --text: #0f172a;
@@ -66,18 +69,25 @@
       align-items: center;
     }
 
-    nav a {
-      margin-left: 22px;
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 14px;
-      position: relative;
-    }
+nav a {
+  margin-left: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  transition: all .25s ease;
+}
 
-    nav a.active,
-    nav a:hover {
-      color: var(--primary);
-    }
+nav a:hover {
+  background: rgba(37,99,235,0.08);
+  color: var(--primary);
+}
+
+nav a.active {
+  background: var(--primary);
+  color: #fff;
+}
 
     nav a.active::after {
       content: "";
@@ -90,15 +100,22 @@
       border-radius: 2px;
     }
 
-    .toggle {
-      margin-left: 22px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: transparent;
-      cursor: pointer;
-      color: var(--text);
-    }
+.toggle {
+  margin-left: 14px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px var(--glow);
+}
 
     /* ===== HERO ===== */
     header {
@@ -313,7 +330,8 @@
 <section id="contact">
   <h2>Kontak</h2>
   <div class="card reveal">
-    Email: <a href="mailto:officialmafdal@gmail.com">officialmafdal@gmail.com</a><br>
+    📧 <strong>Email</strong><br>
+    <a href="mailto:emailkamu@gmail.com">emailkamu@gmail.com</a><br><br>
   </div>
 </section>
 
@@ -322,6 +340,10 @@
 </footer>
 
 <script>
+  window.addEventListener("scroll", () => {
+    document.querySelector("nav")
+      .classList.toggle("scrolled", window.scrollY > 20);
+  });
   // dark mode
   function toggleDark() {
     document.body.classList.toggle('dark');

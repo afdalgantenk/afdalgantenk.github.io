@@ -5,30 +5,32 @@
   <title>Muhammad Afdal | Web Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #f9fafb;
-      --text: #111827;
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
       --card: #ffffff;
       --primary: #2563eb;
-      --muted: #6b7280;
+      --border: #e5e7eb;
     }
 
     body.dark {
       --bg: #020617;
       --text: #e5e7eb;
+      --muted: #94a3b8;
       --card: #0f172a;
       --primary: #60a5fa;
-      --muted: #9ca3af;
+      --border: #1e293b;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
     }
 
@@ -42,25 +44,31 @@
     nav {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: var(--card);
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      z-index: 100;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    body.dark nav {
+      background: rgba(2,6,23,0.8);
     }
 
     .nav-container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
-      padding: 15px 20px;
+      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     nav a {
-      margin-left: 20px;
+      margin-left: 24px;
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
+      font-size: 14px;
     }
 
     nav a:hover {
@@ -68,94 +76,100 @@
     }
 
     .toggle {
-      cursor: pointer;
-      border: none;
-      background: var(--primary);
-      color: #fff;
+      margin-left: 24px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
       padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
     }
 
-    /* ===== HEADER ===== */
+    /* ===== HERO ===== */
     header {
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      color: #fff;
-      padding: 90px 20px;
-      text-align: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 120px 24px 80px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
 
-    header h1 {
-      font-size: 42px;
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.1);
+      color: var(--primary);
+      font-size: 13px;
       font-weight: 600;
     }
 
-    header p {
-      margin-top: 12px;
-      font-size: 18px;
-      opacity: 0.9;
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 16px;
     }
 
-    /* ===== CONTAINER ===== */
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
+    /* ===== SECTION ===== */
     section {
-      margin-bottom: 80px;
+      max-width: 1200px;
+      margin: auto;
+      padding: 100px 24px;
     }
 
     section h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    section h2::after {
-      content: "";
-      width: 60px;
-      height: 4px;
-      background: var(--primary);
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      border-radius: 4px;
+      font-size: 32px;
+      margin-bottom: 40px;
     }
 
     .card {
       background: var(--card);
-      padding: 30px;
-      border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 16px;
     }
 
     /* ===== SKILLS ===== */
     .skills {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 14px;
     }
 
     .skills span {
-      background: rgba(37,99,235,0.1);
-      color: var(--primary);
-      padding: 8px 16px;
-      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 999px;
       font-size: 14px;
-      font-weight: 500;
     }
 
     /* ===== PROJECTS ===== */
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
     }
 
     .project h3 {
       margin-bottom: 10px;
+      font-size: 18px;
     }
 
     .project p {
@@ -165,28 +179,27 @@
 
     /* ===== FOOTER ===== */
     footer {
+      padding: 50px 24px;
       text-align: center;
-      padding: 40px 20px;
-      background: #020617;
-      color: #9ca3af;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
     }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 32px;
+    @media (max-width: 900px) {
+      header {
+        grid-template-columns: 1fr;
+        padding-top: 80px;
       }
 
-      nav a {
-        margin-left: 12px;
-        font-size: 14px;
+      .hero h1 {
+        font-size: 40px;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <div class="nav-container">
     <strong>Muhammad Afdal</strong>
@@ -200,66 +213,73 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <header>
-  <h1>Muhammad Afdal</h1>
-  <p>Web Developer • System Builder • Problem Solver</p>
+  <div class="hero">
+    <span class="badge">Web Developer</span>
+    <h1>Building clean,<br>reliable web systems.</h1>
+    <p>
+      Saya fokus membangun sistem informasi berbasis web,
+      dashboard internal, dan aplikasi yang stabil untuk kebutuhan nyata.
+    </p>
+  </div>
+
+  <div class="hero-card">
+    <strong>Core Stack</strong>
+    <p style="margin-top:10px;color:var(--muted)">
+      PHP • MySQL • JavaScript • Git • System Design
+    </p>
+  </div>
 </header>
 
-<div class="container">
+<section id="about">
+  <h2>Tentang Saya</h2>
+  <div class="card">
+    Saya adalah web developer dengan fokus pada pengembangan
+    sistem internal, otomasi, dan aplikasi berbasis database
+    yang mengutamakan kestabilan dan kejelasan alur.
+  </div>
+</section>
 
-  <section id="about">
-    <h2>Tentang Saya</h2>
-    <div class="card">
-      <p>
-        Saya adalah web developer yang fokus pada pengembangan sistem informasi
-        berbasis web, dashboard internal, dan aplikasi berbasis PHP & database.
-        Terbiasa membangun solusi nyata untuk kebutuhan organisasi.
-      </p>
+<section id="skills">
+  <h2>Keahlian</h2>
+  <div class="card skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>PHP</span>
+    <span>MySQL</span>
+    <span>Git & GitHub</span>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Proyek</h2>
+  <div class="projects">
+    <div class="card project">
+      <h3>Portal Aplikasi Pondok</h3>
+      <p>Sistem terintegrasi untuk layanan internal pondok pesantren.</p>
     </div>
-  </section>
-
-  <section id="skills">
-    <h2>Keahlian</h2>
-    <div class="card skills">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>PHP</span>
-      <span>MySQL</span>
-      <span>Git & GitHub</span>
+    <div class="card project">
+      <h3>Aplikasi Tasreh</h3>
+      <p>Sistem perizinan santri dengan filter tanggal dan PDF.</p>
     </div>
-  </section>
-
-  <section id="projects">
-    <h2>Proyek</h2>
-    <div class="projects">
-      <div class="card project">
-        <h3>Portal Aplikasi Pondok</h3>
-        <p>Sistem portal terintegrasi untuk manajemen layanan internal pondok pesantren.</p>
-      </div>
-      <div class="card project">
-        <h3>Aplikasi Tasreh</h3>
-        <p>Sistem perizinan santri multi-lembaga dengan filter tanggal dan output PDF.</p>
-      </div>
-      <div class="card project">
-        <h3>Aplikasi Verifikasi Muhrim</h3>
-        <p>Sistem verifikasi muhrim untuk pondok pesantren.</p>
-      </div>
+    <div class="card project">
+      <h3>Mapping UID</h3>
+      <p>Manajemen UID dengan import CSV, pencarian, dan notifikasi.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="contact">
-    <h2>Kontak</h2>
-    <div class="card">
-      <p>Email: <a href="mailto:officialmafdal@gmail.com">officialmafdal@gmail.com</a></p>
-    </div>
-  </section>
-
-</div>
+<section id="contact">
+  <h2>Kontak</h2>
+  <div class="card">
+    Email: <a href="mailto:emailkamu@gmail.com">emailkamu@gmail.com</a><br>
+    GitHub: <a href="https://github.com/afdalgantenk" target="_blank">github.com/afdalgantenk</a>
+  </div>
+</section>
 
 <footer>
-  © 2026 Muhammad Afdal • Built with GitHub Pages
+  © 2026 Muhammad Afdal
 </footer>
 
 <script>
